@@ -364,18 +364,20 @@ function useMouseAndTouchTracker(
       }
     }
 
-    environment.addEventListener('mousedown', onMouseDown)
-    environment.addEventListener('mouseup', onMouseUp)
-    environment.addEventListener('touchstart', onTouchStart)
-    environment.addEventListener('touchmove', onTouchMove)
-    environment.addEventListener('touchend', onTouchEnd)
+    if (environment.addEventListener != null) {
+      environment.addEventListener('mousedown', onMouseDown)
+      environment.addEventListener('mouseup', onMouseUp)
+      environment.addEventListener('touchstart', onTouchStart)
+      environment.addEventListener('touchmove', onTouchMove)
+      environment.addEventListener('touchend', onTouchEnd)
 
-    return function cleanup() {
-      environment.removeEventListener('mousedown', onMouseDown)
-      environment.removeEventListener('mouseup', onMouseUp)
-      environment.removeEventListener('touchstart', onTouchStart)
-      environment.removeEventListener('touchmove', onTouchMove)
-      environment.removeEventListener('touchend', onTouchEnd)
+      return function cleanup() {
+        environment.removeEventListener('mousedown', onMouseDown)
+        environment.removeEventListener('mouseup', onMouseUp)
+        environment.removeEventListener('touchstart', onTouchStart)
+        environment.removeEventListener('touchmove', onTouchMove)
+        environment.removeEventListener('touchend', onTouchEnd)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, environment])
