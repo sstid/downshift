@@ -17,7 +17,7 @@ import {
   noop,
 } from '../utils'
 import setStatus from '../set-a11y-status'
-
+import {isReactNative} from '../is.macro'
 const dropdownDefaultStateValues = {
   highlightedIndex: -1,
   isOpen: false,
